@@ -1,0 +1,19 @@
+---
+- name: Get information on variables as they are passed by the SRC platform to ansible on the workspace.
+  hosts: localhost
+  tasks:
+    - name: Set fact
+      set_fact:
+        foo: bar
+    - name: Display all variables/facts known for a host
+      debug:
+        var: hostvars[inventory_hostname]
+      tags: debug_info
+    - name: Write the variables to a json file
+      copy:
+        dest: /tmp/ansiblevars.json
+        content: "{{ hostvars[inventory_hostname] | to_yaml }}"
+    - name: Write the variables to a yaml file
+      copy:
+        dest: /tmp/ansiblevars.yaml
+        content: "{{ hostvars[inventory_hostname] | to_yaml }}"
