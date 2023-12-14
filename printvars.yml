@@ -12,7 +12,7 @@
     - name: Write the variables to a json file
       copy:
         dest: /tmp/ansiblevars.json
-        content: "{{ hostvars[inventory_hostname] | to_yaml }}"
+        content: "{{ hostvars[inventory_hostname] }}"
     - name: Write the variables to a yaml file
       copy:
         dest: /tmp/ansiblevars.yaml
